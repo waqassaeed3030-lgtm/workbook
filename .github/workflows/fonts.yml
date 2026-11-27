@@ -1,0 +1,22 @@
+name: Prepare Jameel font
+on:
+  push:
+    paths: ['.github/workflows/fonts.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  font:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          curl -sL -o j.ttf "https://raw.githubusercontent.com/abid-mujtaba/ttf-jameel-noori-nastaleeq/master/Jameel%20Noori%20Nastaleeq.ttf"
+          pip install -q fonttools brotli
+          python -c "from fontTools.ttLib import TTFont; f=TTFont('j.ttf'); f.flavor='woff2'; f.save('fonts/jameel.woff2')"
+          rm j.ttf
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add fonts/jameel.woff2
+          git commit -m "Add Jameel Noori Nastaleeq web font" || echo nothing
+          git push
