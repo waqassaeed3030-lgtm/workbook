@@ -1,0 +1,52 @@
+@font-face{font-family:'Jameel';src:url(../fonts/jameel.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Quran';src:url(../fonts/amiri.woff2) format('woff2');font-display:swap}
+:root{color-scheme:light dark;--bg:light-dark(#f7f3ea,#0f1b1a);--card:light-dark(#fffdf8,#162523);--ink:light-dark(#173a37,#e8efe9);--soft:light-dark(#5b6b68,#a9bbb7);--teal:light-dark(#11605a,#4fb3a8);--tealD:light-dark(#0b4743,#2c8a80);--cop:light-dark(#b0682f,#e0a774);--line:light-dark(#e3dccd,#28403d);--ok:light-dark(#e3f3ee,#173c35);--no:light-dark(#fbeee4,#3b2a1f)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:21px/2 'Jameel','Noto Nastaliq Urdu',serif;overflow-x:clip}
+.wrap{max-width:860px;margin:0 auto;padding:0 max(4vw,14px) 60px}
+header.top{background:linear-gradient(270deg,#0b4743,#11605a);color:#f3ecdd;padding:26px max(4vw,14px) 18px}
+header.top .in{max-width:860px;margin:0 auto}
+.kick{color:#e0a774;font-size:18px;margin:0}
+h1{font-size:44px;line-height:1.5;margin:0;font-weight:400}
+.sub{margin:0;font-size:19px;opacity:.9}
+.name{display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap}
+.name label{font-size:19px}
+.name input{flex:1;min-width:200px;font:inherit;font-size:20px;padding:4px 14px;border-radius:12px;border:0;background:#f7f3ea;color:#173a37;min-height:46px}
+nav.tabs{display:flex;gap:8px;overflow-x:auto;padding:14px 0 6px;position:sticky;top:0;background:var(--bg);z-index:5}
+nav.tabs a{flex:none;text-decoration:none;color:var(--teal);border:1.5px solid var(--teal);border-radius:30px;padding:2px 18px;font-size:19px;min-height:44px;display:flex;align-items:center}
+nav.tabs a.on{background:var(--teal);color:#fff}
+nav.tabs a .d{font-family:system-ui;font-size:12px;margin-right:6px;opacity:.8}
+.band{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 22px;margin:14px 0}
+.unit{background:linear-gradient(270deg,var(--tealD),var(--teal));color:#fff;border:0}
+.unit h2{margin:0;font-size:30px;line-height:1.7;font-weight:400}
+.unit p{margin:0;font-size:18px;opacity:.9}
+h3.part{color:var(--cop);font-size:24px;font-weight:400;margin:26px 0 0;border-bottom:1.5px solid var(--line)}
+.hint{color:var(--soft);font-size:18px;margin:4px 0 0}
+.case{border-right:5px solid var(--cop);background:light-dark(#fbf6ef,#1d2a22)}
+.q{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 20px 16px;margin:12px 0}
+.q .t{font-size:21px;margin:0 0 6px;color:var(--ink)}
+.q .n{display:inline-flex;width:30px;height:30px;border-radius:50%;background:var(--teal);color:#fff;font:600 14px system-ui;align-items:center;justify-content:center;margin-left:10px;vertical-align:middle}
+.ar,q{font-family:'Quran','Amiri',serif}
+.opts{display:grid;gap:8px}
+.opt{font:inherit;font-size:19px;text-align:right;background:transparent;color:var(--ink);border:1.5px solid var(--line);border-radius:12px;padding:4px 14px;min-height:46px;cursor:pointer;line-height:1.9}
+.opt:hover:not(:disabled){border-color:var(--teal)}
+.opt:focus-visible,.btn:focus-visible,textarea:focus-visible{outline:3px solid var(--cop);outline-offset:2px}
+.opt.right{background:var(--ok);border-color:var(--teal)}
+.opt.wrong{background:var(--no);border-color:var(--cop)}
+.opt:disabled{cursor:default}
+.fb{margin:8px 0 0;padding:6px 14px;border-radius:12px;background:var(--ok);font-size:18px}
+.fb b{color:var(--teal)}
+textarea{width:100%;font:inherit;font-size:19px;line-height:2;border:1.5px solid var(--line);border-radius:12px;padding:6px 14px;background:transparent;color:var(--ink);min-height:120px;resize:vertical}
+.btn{font:inherit;font-size:18px;border:1.5px solid var(--teal);color:var(--teal);background:transparent;border-radius:30px;padding:2px 18px;min-height:44px;cursor:pointer;margin-top:8px}
+.btn.fill{background:var(--teal);color:#fff}
+.private{border-style:dashed}
+.score{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.score .big{font:700 34px system-ui;color:var(--teal);white-space:nowrap}
+.done{color:var(--soft);font-size:18px}
+footer{color:var(--soft);font-size:16px;text-align:center;margin-top:28px}
+@media(max-width:600px){body{font-size:19px}h1{font-size:34px}.unit h2{font-size:25px}.q{padding:10px 14px 14px}}
+.task{border-style:dashed;border-color:var(--cop)}
+.tag{font-size:15px;color:var(--cop);border:1px solid var(--cop);border-radius:20px;padding:0 10px;margin-right:8px;white-space:nowrap}
+.intro{font-size:19px}
+.intro p{margin:4px 0}
