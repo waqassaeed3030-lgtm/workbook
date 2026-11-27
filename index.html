@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>نبوی منہج دعوت · آن لائن ورک بک</title>
+<style>
+/* VOICE: باوقار، پرسکون، کتابچے جیسا
+   IDEA: اتالیق کتابچے کا ایک ورق جو خود جانچتا ہے
+   PICTURE: ہر نشست کا رنگین سرورقی پٹا اور سوالوں کے کارڈ
+   COLOUR and TYPE: teal #11605a، copper #c0793a، کریم؛ جمیل نوری نستعلیق، عربی امیری
+   LAYOUT: ایک کالم، اوپر نشستوں کی ٹیبیں، نیچے نتیجہ اور جمع کرانا */
+@font-face{font-family:"Jameel";src:url(fonts/jameel.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Quran";src:url(fonts/amiri.woff2) format("woff2");font-display:swap}
+:root{color-scheme:light dark;--bg:light-dark(#f7f3ea,#0f1b1a);--card:light-dark(#fffdf8,#162523);--ink:light-dark(#173a37,#e8efe9);--soft:light-dark(#5b6b68,#a9bbb7);--teal:light-dark(#11605a,#4fb3a8);--tealD:light-dark(#0b4743,#2c8a80);--cop:light-dark(#b0682f,#e0a774);--line:light-dark(#e3dccd,#28403d);--ok:light-dark(#e3f3ee,#173c35);--no:light-dark(#fbeee4,#3b2a1f)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:21px/2 "Jameel","Noto Nastaliq Urdu",serif;overflow-x:clip}
+.wrap{max-width:860px;margin:0 auto;padding:0 max(4vw,14px) 60px}
+header.top{background:linear-gradient(270deg,#0b4743,#11605a);color:#f3ecdd;padding:26px max(4vw,14px) 18px}
+header.top .in{max-width:860px;margin:0 auto}
+.kick{color:#e0a774;font-size:18px;margin:0}
+h1{font-size:44px;line-height:1.5;margin:0;font-weight:400}
+.sub{margin:0;font-size:19px;opacity:.9}
+.name{display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap}
+.name label{font-size:19px}
+.name input{flex:1;min-width:200px;font:inherit;font-size:20px;padding:4px 14px;border-radius:12px;border:0;background:#f7f3ea;color:#173a37;min-height:46px}
+nav.tabs{display:flex;gap:8px;overflow-x:auto;padding:14px 0 6px;position:sticky;top:0;background:var(--bg);z-index:5}
+nav.tabs a{flex:none;text-decoration:none;color:var(--teal);border:1.5px solid var(--teal);border-radius:30px;padding:2px 18px;font-size:19px;min-height:44px;display:flex;align-items:center}
+nav.tabs a.on{background:var(--teal);color:#fff}
+nav.tabs a .d{font-family:system-ui;font-size:12px;margin-right:6px;opacity:.8}
+.band{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 22px;margin:14px 0}
+.unit{background:linear-gradient(270deg,var(--tealD),var(--teal));color:#fff;border:0}
+.unit h2{margin:0;font-size:30px;line-height:1.7;font-weight:400}
+.unit p{margin:0;font-size:18px;opacity:.9}
+h3.part{color:var(--cop);font-size:24px;font-weight:400;margin:26px 0 0;border-bottom:1.5px solid var(--line)}
+.hint{color:var(--soft);font-size:18px;margin:4px 0 0}
+.case{border-right:5px solid var(--cop);background:light-dark(#fbf6ef,#1d2a22)}
+.q{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 20px 16px;margin:12px 0}
+.q .t{font-size:21px;margin:0 0 6px;color:var(--ink)}
+.q .n{display:inline-flex;width:30px;height:30px;border-radius:50%;background:var(--teal);color:#fff;font:600 14px system-ui;align-items:center;justify-content:center;margin-left:10px;vertical-align:middle}
+.ar,q{font-family:"Quran","Amiri",serif}
+.opts{display:grid;gap:8px}
+.opt{font:inherit;font-size:19px;text-align:right;background:transparent;color:var(--ink);border:1.5px solid var(--line);border-radius:12px;padding:4px 14px;min-height:46px;cursor:pointer;line-height:1.9}
+.opt:hover:not(:disabled){border-color:var(--teal)}
+.opt:focus-visible,.btn:focus-visible,textarea:focus-visible{outline:3px solid var(--cop);outline-offset:2px}
+.opt.right{background:var(--ok);border-color:var(--teal)}
+.opt.wrong{background:var(--no);border-color:var(--cop)}
+.opt:disabled{cursor:default}
+.fb{margin:8px 0 0;padding:6px 14px;border-radius:12px;background:var(--ok);font-size:18px}
+.fb b{color:var(--teal)}
+textarea{width:100%;font:inherit;font-size:19px;line-height:2;border:1.5px solid var(--line);border-radius:12px;padding:6px 14px;background:transparent;color:var(--ink);min-height:120px;resize:vertical}
+.btn{font:inherit;font-size:18px;border:1.5px solid var(--teal);color:var(--teal);background:transparent;border-radius:30px;padding:2px 18px;min-height:44px;cursor:pointer;margin-top:8px}
+.btn.fill{background:var(--teal);color:#fff}
+.private{border-style:dashed}
+.score{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.score .big{font:700 34px system-ui;color:var(--teal);white-space:nowrap}
+.done{color:var(--soft);font-size:18px}
+footer{color:var(--soft);font-size:16px;text-align:center;margin-top:28px}
+@media(max-width:600px){body{font-size:19px}h1{font-size:34px}.unit h2{font-size:25px}.q{padding:10px 14px 14px}}
+</style></head><body>
+<header class="top"><div class="in">
+<p class="kick">اتالیق ٹریننگز · محاضر: وقاص سعید</p>
+<h1>نبوی منہج دعوت · آن لائن ورک بک</h1>
+<p class="sub">نشست 1 تا 4 · پہلے خود حل کیجیے، پھر جواب دیکھیے</p>
+<div class="name"><label for="nm">آپ کا نام:</label><input id="nm" autocomplete="name" placeholder="نام لکھیے"></div>
+<div class="name"><label for="ph">واٹس ایپ نمبر (اختیاری):</label><input id="ph" inputmode="tel" autocomplete="tel" placeholder="03xx-xxxxxxx"></div>
+</div></header>
+<div class="wrap">
+<nav class="tabs" id="tabs" aria-label="نشستیں"></nav>
+<main id="main"></main>
+<footer>جمع کرانے سے پہلے آپ کے جوابات اسی فون یا کمپیوٹر پر محفوظ رہتے ہیں، اس لیے بیچ میں چھوڑ کر بعد میں مکمل کر سکتے ہیں۔ · اتالیق ٹریننگز · ataleeq.org.pk</footer>
+</div>
+<script>
+{
+const FORMS = [{"title":"نبوی منہج دعوت · نشست 1 · دعوتِ دین: مقصد، بصیرت اور ذمہ داری","items":[{"t":"h","title":"الف۔ یاد کیجیے","d":"ہر سوال کا ایک درست جواب منتخب کیجیے۔"},{"t":"mcq","q":"«قُلْ هَٰذِهِ سَبِيلِي أَدْعُو إِلَى اللَّهِ ۚ عَلَىٰ بَصِيرَةٍ» (یوسف 108) کے مطابق داعی کس کی طرف بلاتا ہے؟","o":["اپنی جماعت کی طرف","اپنی ذات کی طرف","اللہ کی طرف","اپنے مسلک کی طرف"],"a":2,"fb":"داعی لوگوں کو اپنی طرف نہیں، اللہ کی طرف جوڑتا ہے۔"},{"t":"mcq","q":"«إِنَّكَ لَا تَهْدِي مَنْ أَحْبَبْتَ» (القصص 56) سے داعی کی ذمہ داری کی کون سی حد معلوم ہوتی ہے؟","o":["ہدایت دینا داعی کے اختیار میں ہے","حق پہنچانا داعی کا کام ہے، ہدایت اللہ کے اختیار میں","دعوت صرف قریبی لوگوں کو دی جائے","نتیجہ نہ ملے تو دعوت چھوڑ دی جائے"],"a":1,"fb":"حق پہنچانا داعی کا کام ہے؛ ہدایت اللہ کے اختیار میں ہے۔"},{"t":"mcq","q":"کوہِ صفا پر دعوت سے پہلے رسول اللہ ﷺ نے قریش سے کیا پوچھا؟","o":["ان کے قبیلوں کی تعداد","اگر میں کہوں کہ وادی کے پیچھے لشکر ہے تو کیا مانو گے؟","ان کے بتوں کے نام","ان کی تجارت کا حال"],"a":1,"fb":"انہوں نے کہا: ہم نے آپ کو ہمیشہ سچا پایا (صحیح بخاری 4770)۔ دعوت سے پہلے داعی کا اعتماد۔"},{"t":"mcq","q":"خیبر کے موقع پر حضرت علیؓ سے فرمایا: تمہارے ذریعے ایک آدمی کو ہدایت مل جائے تو یہ تمہارے لیے ...... سے بہتر ہے۔","o":["سونے کے پہاڑ","سرخ اونٹوں","ساری دنیا","ہزار درہم"],"a":1,"fb":"سرخ اونٹوں سے بہتر (صحیح بخاری 3701)۔"},{"t":"h","title":"ب۔ سمجھیے","d":"اپنے الفاظ میں دو تین سطریں لکھیے۔"},{"t":"para","q":"دعوت، تعلیم اور تربیت میں ایک ایک جملے میں فرق لکھیے۔","h":"ہر عمل کا غالب مقصد کیا ہے؟","fb":"دعوت: اللہ کی بندگی یا حق کے اگلے قدم کی طرف بلانا۔ تعلیم: علم یا فہم سکھانا۔ تربیت: مشق اور بازخورد سے عادت اور کردار بنانا۔"},{"t":"para","q":"«الدِّينُ النَّصِيحَةُ» (صحیح مسلم 55) کی روشنی میں: خیرخواہی اور اپنی بات منوانے کی خواہش میں کیا فرق ہے؟","fb":"خیرخواہی میں مرکز مخاطب کا بھلا اور اللہ کا حق ہے؛ بات منوانے میں مرکز اپنی رائے یا ذات بن جاتی ہے۔"},{"t":"h","title":"ج۔ برت کر دیکھیے","d":"فرضی صورت: ایک معلم کہتے ہیں: «میں نے تین سال درس دیا، کوئی خاص تبدیلی نہیں آئی۔ لگتا ہے دعوت کا فائدہ نہیں۔»"},{"t":"para","q":"نشست 1 کی روشنی میں آپ انہیں کیا کہیں گے؟","h":"ذمہ داری اور نتیجے پر اختیار کی حد کو سامنے رکھیے","fb":"ذمہ داری حق پہنچانا ہے، ہدایت اللہ کے اختیار میں (القصص 56)۔ ایک آدمی کی ہدایت بھی سرخ اونٹوں سے بہتر ہے۔ طریقے کا جائزہ ضرور لیں، مگر مایوسی دعوت چھوڑنے کی دلیل نہیں۔"},{"t":"h","title":"د۔ اپنا جائزہ","d":"یہ حصہ نجی ہے؛ جمع نہیں ہوگا۔"},{"t":"private","q":"کیا میری دعوت کا رخ کبھی اللہ کے بجائے اپنی ذات، ادارے یا جماعت کی طرف مڑ جاتا ہے؟ ایک مثال سوچ کر لکھیے۔"}]},{"title":"نبوی منہج دعوت · نشست 2 · مخاطب شناسی: جواب سے پہلے انسان","items":[{"t":"h","title":"الف۔ یاد کیجیے","d":"ہر سوال کا ایک درست جواب منتخب کیجیے۔"},{"t":"mcq","q":"آن لائن کلاس میں ایک شریک کا کیمرا بند ہے۔ یہ بات کس درجے میں آتی ہے؟","o":["مشاہدہ","تشریح","فیصلہ","نیت کا علم"],"a":0,"fb":"یہ مشاہدہ ہے۔"},{"t":"mcq","q":"«اسے دین میں دلچسپی ہی نہیں» کہنا کس درجے میں آتا ہے؟","o":["مشاہدہ","تشریح","ایسا فیصلہ جس کے لیے معلومات کافی نہیں","تصدیق"],"a":2,"fb":"یہ فیصلہ ہے، جس کی بنیاد ہمارے پاس نہیں۔"},{"t":"mcq","q":"مخاطب شناسی کے چھ قدموں کی درست ترتیب کون سی ہے؟","o":["سماعت، توقف، تصدیق، استفسار، اگلا عمل، مناسبت","توقف، سماعت، استفسار، تصدیق، مناسبت، اگلا عمل","استفسار، سماعت، توقف، مناسبت، تصدیق، اگلا عمل","توقف، استفسار، سماعت، اگلا عمل، تصدیق، مناسبت"],"a":1,"fb":"توقف، سماعت، استفسار، تصدیق، مناسبت، اگلا عمل۔"},{"t":"mcq","q":"حضرت معاویہ بن حکمؓ نے نماز میں بات کر لی۔ بعد میں انہوں نے رسول اللہ ﷺ کے طرزِ تعلیم کے بارے میں کیا کہا؟","o":["آپ ﷺ نے مجلس سے نکال دیا","آپ ﷺ نے نہ جھڑکا، نہ مارا، نہ برا کہا","آپ ﷺ نے بات کا جواب نہیں دیا","آپ ﷺ نے دوسروں سے کہلوایا"],"a":1,"fb":"«مَا كَهَرَنِي وَلَا ضَرَبَنِي وَلَا شَتَمَنِي» (صحیح مسلم 537)۔ غلطی درست ہوئی، عزت محفوظ رہی۔"},{"t":"mcq","q":"«وَلَا تَسُبُّوا الَّذِينَ يَدْعُونَ مِن دُونِ اللَّهِ» (الانعام 108) سے کون سا دعوتی اصول نکلتا ہے؟","o":["باطل پر کبھی تنقید نہ کی جائے","اپنی بات کے ممکنہ نتیجے پر بھی نظر رکھی جائے","ہر مخاطب سے اتفاق کیا جائے","صرف اپنے لوگوں سے بات کی جائے"],"a":1,"fb":"نیت کافی نہیں؛ طرزِ اظہار کا نتیجہ بھی دیکھنا ہے۔ علمی تردید اور توہین آمیز اشتعال الگ ہیں۔"},{"t":"h","title":"ب۔ سمجھیے","d":"اپنے الفاظ میں دو تین سطریں لکھیے۔"},{"t":"para","q":"ایک نوجوان پوچھتا ہے: «وراثت میں بہن کا حصہ بھائی سے کم کیوں ہے؟» اس کے خاندان میں ایک بہن کو حصہ ملا ہی نہیں۔ سوال کے پیچھے چاروں سطحیں (سوال، تجربہ، قدر، رکاوٹ) لکھیے۔","fb":"سوال: تقسیم کی حکمت۔ تجربہ: بہن کو حصہ نہ ملنا۔ قدر: انصاف۔ رکاوٹ: خاندانی ظلم کو شرعی حکم سمجھ لینا۔ پہلے واضح کریں کہ حصہ نہ دینا خود شریعت کی خلاف ورزی ہے۔"},{"t":"para","q":"«میں آپ کی تکلیف سمجھ رہا ہوں» اور «آپ بالکل ٹھیک کہتے ہیں» میں کیا فرق ہے؟","fb":"پہلا تکلیف کا اعتراف ہے؛ دوسرا ہر بات کی توثیق۔ ہمدردی کے بعد بھی غلط عمومی نتیجے کی اصلاح ہو سکتی ہے۔"},{"t":"h","title":"ج۔ برت کر دیکھیے","d":"فرضی صورت: یونیورسٹی کا ایک نوجوان کہتا ہے: «علماء ہماری بات سنتے نہیں۔ سوال کریں تو فوراً کہہ دیتے ہیں کہ ایمان کمزور ہے۔»"},{"t":"para","q":"اس کے لیے لکھیے: (1) ایک کھلا سوال (2) تصدیقی خلاصہ (3) ایک قابلِ عمل اگلا قدم","fb":"کھلا سوال: آپ کو کس خاص گفتگو سے ایسا محسوس ہوا؟ خلاصہ: آپ نے حکمت پوچھی اور جواب میں آپ پر نسبت لگائی گئی، کیا میں درست سمجھا؟ اگلا قدم: اصل حکم اور دلیل واضح کرنا، اور ایک واقعے سے سب پر حکم نہ لگانے کی اصلاح۔"},{"t":"h","title":"د۔ اپنا جائزہ","d":"یہ حصہ نجی ہے؛ جمع نہیں ہوگا۔"},{"t":"private","q":"گزشتہ ہفتے کی کسی گفتگو میں کیا میں نے سوال مکمل ہونے سے پہلے جواب سوچنا شروع کر دیا تھا؟ اگلی بار کون سا قدم یاد رکھوں گا؟"}]},{"title":"نبوی منہج دعوت · نشست 3 · سماج شناسی: مخاطب کا ماحول","items":[{"t":"h","title":"الف۔ یاد کیجیے","d":"ہر سوال کا ایک درست جواب منتخب کیجیے۔"},{"t":"mcq","q":"حضرت معاذؓ کو یمن روانہ کرتے وقت رسول اللہ ﷺ نے سب سے پہلے کیا بتایا؟","o":["یمن کا راستہ","تم اہلِ کتاب کی ایک قوم کے پاس جا رہے ہو","زکوٰۃ کی شرح","وہاں کے حاکم کا نام"],"a":1,"fb":"«إِنَّكَ تَأْتِي قَوْمًا مِنْ أَهْلِ الْكِتَابِ» (صحیح بخاری 1496)۔ پہلے لوگ، پھر ترتیب۔"},{"t":"mcq","q":"«إِن جَاءَكُمْ فَاسِقٌ بِنَبَإٍ فَتَبَيَّنُوا» (الحجرات 6) کا دعوتی اطلاق کیا ہے؟","o":["ہر خبر پر فوراً عمل","خبر پر قدم اٹھانے سے پہلے جانچ","کسی خبر پر کبھی یقین نہ کرنا","صرف بڑوں کی خبر ماننا"],"a":1,"fb":"کسی حلقے کے بارے میں سنی سنائی بات پر حکم لگانے سے پہلے تحقیق۔"},{"t":"mcq","q":"«العادة محكمة» کے ساتھ کون سی حد لازم ہے؟","o":["ہر رواج شریعت ہے","نص کے خلاف عرف معتبر نہیں","عرف کا کوئی اعتبار نہیں","صرف پرانا عرف معتبر ہے"],"a":1,"fb":"عرف معتبر ہے مگر نص کے خلاف نہیں؛ رائج ہونا درست ہونا نہیں۔"},{"t":"mcq","q":"سماج کی چھ تہیں (اندر سے باہر): فرد، ......، فوری حلقہ، طبقہ، ......، وسیع معاشرہ۔ خالی جگہوں میں کیا آئے گا؟","o":["مسجد؛ حکومت","گھر اور خاندان؛ وابستگیاں","دوست؛ میڈیا","مدرسہ؛ ملک"],"a":1,"fb":"گھر اور خاندان؛ وابستگیاں۔"},{"t":"h","title":"ب۔ سمجھیے","d":"اپنے الفاظ میں دو تین سطریں لکھیے۔"},{"t":"para","q":"یہ جملہ دوبارہ لکھیے، اس طرح کہ جو دیکھا گیا وہ محفوظ رہے اور جو معلوم نہیں وہ بھی واضح ہو: «ہمارے محلے کے نوجوان دینی مجلس میں آنا ہی نہیں چاہتے۔»","fb":"مثلاً: «پچھلی تین مجلسوں میں نوجوانوں کی حاضری کم رہی؛ وجہ ابھی معلوم نہیں، غیر حاضر نوجوانوں سے پوچھنا ہے۔»"},{"t":"para","q":"سماج شناسی میں «محدود اور گہرا» کا کیا مطلب ہے؟","fb":"پورے معاشرے پر تبصرے کے بجائے اپنے حلقے (مسجد، کلاس، گھر) کو گہرائی سے جاننا: اوقات، معاش، رائج طریقے اور مسائل۔"},{"t":"h","title":"ج۔ برت کر دیکھیے","d":"فرضی صورت: ایک عالم نے بازار میں دکان کھولی۔ پہلے ہفتے انہوں نے ساتھی دکان داروں کو نماز کے وقت دکان کھلی رکھنے اور ناپ تول پر ٹوکنا شروع کر دیا۔ لوگ ان سے کترانے لگے۔"},{"t":"para","q":"تین باتیں لکھیے: (1) انہوں نے ماحول کی کون سی بات نظرانداز کی؟ (2) انہیں پہلے کیا جاننا چاہیے تھا؟ (3) پہلا عملی قدم کیا ہوتا؟","fb":"بازار کا مزاج اور دکان داروں کی عزتِ نفس نظرانداز ہوئی۔ پہلے لوگوں اور معاملات کو جاننا تھا۔ پہلا قدم: خدمت، سلام، اچھا معاملہ اور تعلق؛ تعلق بات کہنے کی تیاری ہے، اس کا متبادل نہیں۔"},{"t":"h","title":"د۔ اپنا جائزہ","d":"یہ حصہ نجی ہے؛ جمع نہیں ہوگا۔"},{"t":"private","q":"اپنے سب سے اہم دعوتی حلقے کے بارے میں: ایک بات جو میں یقین سے جانتا ہوں، ایک جو صرف سمجھتا ہوں، اور اسے جانچنے کا میرا سوال۔"}]},{"title":"نبوی منہج دعوت · نشست 4 · پیغام شناسی: ترجیحات اور تدریج","items":[{"t":"h","title":"الف۔ یاد کیجیے","d":"ہر سوال کا ایک درست جواب منتخب کیجیے۔"},{"t":"mcq","q":"حضرت عائشہؓ کے مطابق قرآن میں سب سے پہلے کیسی سورت اتری؟","o":["حلال و حرام کے احکام والی","جنت اور دوزخ کے ذکر والی","قصوں والی","جہاد کے احکام والی"],"a":1,"fb":"«فِيهَا ذِكْرُ الْجَنَّةِ وَالنَّارِ» (صحیح بخاری 4993)۔"},{"t":"mcq","q":"شراب کی حرمت کا دوسرا مرحلہ (النساء 43) کس چیز سے جڑا تھا؟","o":["تجارت","نماز","روزہ","مہمان نوازی"],"a":1,"fb":"نماز۔ پہلے سے موجود خیر اگلے قدم کا سہارا بنی۔"},{"t":"mcq","q":"«الْيَوْمَ أَكْمَلْتُ لَكُمْ دِينَكُمْ» کا تدریج پر کیا اثر ہے؟","o":["آج بھی احکام تدریج سے نافذ ہوں گے","احکام میں تدریج ختم؛ سکھانے اور مطالبے میں ترتیب باقی","اب ترتیب کی ضرورت نہیں","ہر حکم ایک ساتھ مانگنا لازم ہے"],"a":1,"fb":"احکام میں تدریج مکمل ہو چکی؛ دعوت اور تربیت میں ترتیب باقی ہے۔"},{"t":"mcq","q":"ٹھیک یا غلط: نیا آنے والا پوچھے کہ سود حرام ہے؟ تو کہیں: ابھی اس کی فکر نہ کرو۔","o":["ٹھیک","غلط"],"a":1,"fb":"غلط۔ پوچھے گئے سوال پر حق نہیں چھپایا جائے گا۔"},{"t":"mcq","q":"ٹھیک یا غلط: فرض نماز کی پابندی سے پہلے تہجد کا مطالبہ نہ کرنا تدریج ہے۔","o":["ٹھیک","غلط"],"a":0,"fb":"ٹھیک۔ فرض پہلے، نفل بعد میں۔"},{"t":"mcq","q":"ٹھیک یا غلط: تدریج یعنی بات اتنی نرم کر دینا کہ کوئی ناراض نہ ہو۔","o":["ٹھیک","غلط"],"a":1,"fb":"غلط۔ تدریج ترتیب ہے، حق میں کمی نہیں۔"},{"t":"h","title":"ب۔ سمجھیے","d":"اپنے الفاظ میں دو تین سطریں لکھیے۔"},{"t":"para","q":"ترجیح کے چار اصول لکھیے۔","fb":"جڑ پہلے، شاخیں بعد میں؛ فرض پہلے، نفل بعد میں؛ بڑی برائی پہلے، خاص طور پر جس میں دوسروں کا حق ہو؛ جو اس وقت ممکن ہو (فَاتَّقُوا اللَّهَ مَا اسْتَطَعْتُمْ)۔"},{"t":"para","q":"«ابھی اس پر بات نہیں کرتے» اور «یہ ٹھیک ہے» میں کیا فرق ہے؟","fb":"پہلا ترتیب ہے، دوسرا دین میں تبدیلی۔"},{"t":"h","title":"ج۔ برت کر دیکھیے","d":"فرضی صورت: عبداللہ (بیس برس) یونیورسٹی کا طالب علم ہے۔ ایک دوست کی وفات کے بعد وہ دین کی طرف آنا چاہتا ہے۔ نمازیں اکثر چھوٹ جاتی ہیں، امتحان میں کبھی نقل کر لیتا ہے، رات دیر تک گیمز کھیلتا ہے اور چھوٹی بہن سے سخت لہجے میں بات کرتا ہے۔ ہاں، جمعہ کبھی نہیں چھوڑتا۔"},{"t":"para","q":"عبداللہ کے لیے پیغام کے چار خانے لکھیے: بنیاد، پہلا قدم، بعد کی باری، نہ بدلنے والی حد۔","fb":"بنیاد: دوست کی وفات سے جاگا آخرت کا احساس؛ جمعہ کی پابندی موجود خیر۔ پہلا قدم: پانچ نمازیں۔ بعد کی باری: نقل (جلد)، بہن سے لہجہ، رات کا معمول۔ حد: پوچھے تو صاف بتائیں کہ نقل دھوکا اور ناجائز ہے۔ مختلف ترتیبیں درست ہو سکتی ہیں بشرطیکہ بنیاد پہلے اور کوئی حرام جائز نہ کہا جائے۔"},{"t":"h","title":"د۔ اپنا جائزہ","d":"یہ حصہ نجی ہے؛ جمع نہیں ہوگا۔"},{"t":"private","q":"اپنے درس یا گفتگو میں میں کون سی بات اکثر بنیاد سے پہلے کہہ دیتا ہوں؟"}]},{"title":"نبوی منہج دعوت · جامع مشق · نشست 1 تا 4","items":[{"t":"h","title":"فرضی صورت","d":"ایک عالم کو ایک نئے محلے کی مسجد میں امامت ملی ہے۔ وہ ہفتہ وار درس شروع کرنا چاہتے ہیں۔ محلے میں زیادہ تر لوگ دکان دار اور ملازم پیشہ ہیں؛ چند نوجوان شام کو مسجد کے باہر بیٹھتے ہیں مگر اندر کم آتے ہیں۔"},{"t":"para","q":"نشست 1 · مقصد: درس کا رخ کیا ہوگا، اور ان کی ذمہ داری کی حد کیا ہے؟","fb":"لوگوں کو اللہ سے جوڑنا، اپنی ذات یا ادارے سے نہیں؛ ہدایت اللہ کے اختیار میں۔"},{"t":"para","q":"نشست 2 · مخاطب: باہر بیٹھنے والے نوجوانوں سے پہلا سوال کیا ہوگا؟","fb":"کھلا سوال، مثلاً: «مسجد میں کون سی بات آپ کے لیے آسان یا مشکل ہے؟»"},{"t":"para","q":"نشست 3 · ماحول: کون سی تین باتیں پہلے معلوم کریں گے؟","fb":"کام کے اوقات، اعتماد کے لوگ (محلے کے بزرگ)، رائج طریقے اور پہلے سے موجود خیر۔"},{"t":"para","q":"نشست 4 · پیغام: پہلے درس کا موضوع اور پہلا قدم کیا ہوگا؟","fb":"اللہ سے تعلق اور آخرت؛ پہلا قدم ایک ہی، جیسے باجماعت نماز یا درس میں ایک بار بیٹھنا۔"}]}];
+const SUBMIT = [
+ {id:"1FAIpQLSegVqaLrecNOPoFJl9WphQFr-ipL8gZf9Odi--33xVAubB6CQ", e:[207893316,168200745,313098601,2060562220,263888143,2070830540,128838970,2078248076,1172326130]},
+ {id:"1FAIpQLSeSP05EQNPISe3Qir1BLm1oKSklfFYDaWDvziMAgWTonMvJwg", e:[1546902059,460722818,1452672390,1473795738,709622940,877610242,261593250,1010589430,332597642,2012425930]},
+ {id:"1FAIpQLSfKg845wDIJK-hscO21N-d2ZZxX8aGzlsBqI5e1_9A5d597bw", e:[1285523346,1209548362,1191980018,1891949690,925638731,1964707171,1116490405,308995936,1838438615]},
+ {id:"1FAIpQLSey5I8jyY_jSDdnSDqtfHAIPdNHgjpW-PSBUzwYBbBaOeyeRQ", e:[187387534,449666316,1041912060,1107411997,192758846,1615221969,856976682,1097518963,343847859,331313498,2130473558]},
+ {id:"1FAIpQLSeexY7XcbscXXzELJ6CfpfWpIo47RW1ePP6swN5bzrNMBVctQ", e:[1423206575,1536512842,618133483,1822309562,379215579,788074829]}];
+const SHORT = ["نشست 1 · دعوتِ دین","نشست 2 · مخاطب شناسی","نشست 3 · سماج شناسی","نشست 4 · پیغام شناسی","جامع مشق"];
+const L = ["الف","ب","ج","د"];
+let st = {};
+try { st = JSON.parse(localStorage.getItem("nmd-wb") || "{}"); } catch (e) { st = {}; }
+const save = () => { try { localStorage.setItem("nmd-wb", JSON.stringify(st)); } catch (e) {} };
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt = s => esc(s).replace(/«([^»]*[ً-ْ][^»]*)»/g, '«<span class="ar">$1</span>»');
+const nm = document.getElementById("nm");
+nm.value = st.name || "";
+nm.addEventListener("input", () => { st.name = nm.value; save(); });
+const ph = document.getElementById("ph");
+ph.value = st.phone || "";
+ph.addEventListener("input", () => { st.phone = ph.value; save(); });
+
+function tabs(cur) {
+  document.getElementById("tabs").innerHTML = SHORT.map((t, i) => {
+    const s = stats(i);
+    const d = st["sent" + i] ? ' <span class="d">✓</span>' : "";
+    return `<a href="#s${i+1}" class="${i === cur ? "on" : ""}">${esc(t)}${d}</a>`;
+  }).join("");
+}
+function stats(i) {
+  let total = 0, answered = 0, right = 0;
+  FORMS[i].items.forEach((it, k) => {
+    const v = (st[i] || {})[k];
+    if (it.t === "mcq") { total++; if (v !== undefined) { answered++; if (v === it.a) right++; } }
+    if (it.t === "para") { total++; if (v && v.trim()) answered++; }
+  });
+  return { total, answered, right, mcq: FORMS[i].items.filter(x => x.t === "mcq").length };
+}
+function render(i) {
+  const f = FORMS[i]; st[i] = st[i] || {};
+  let n = 0, h = `<section class="band unit"><p>${esc(SHORT[i].split(" · ")[0])}</p><h2>${esc(f.title.split(" · ").slice(2).join(" · ") || f.title)}</h2></section>`;
+  f.items.forEach((it, k) => {
+    if (it.t === "h") {
+      if (it.title.indexOf("صورت") > -1 || (it.d || "").indexOf("فرضی صورت") === 0) {
+        h += `<h3 class="part">${esc(it.title)}</h3><div class="band case">${fmt(it.d || "")}</div>`;
+      } else {
+        h += `<h3 class="part">${esc(it.title)}</h3>` + (it.d ? `<p class="hint">${fmt(it.d)}</p>` : "");
+      }
+      return;
+    }
+    n++;
+    const v = st[i][k];
+    if (it.t === "mcq") {
+      const answered = v !== undefined;
+      h += `<div class="q"><p class="t"><span class="n">${n}</span>${fmt(it.q)}</p><div class="opts">` +
+        it.o.map((o, j) => {
+          let c = "opt";
+          if (answered && j === it.a) c += " right";
+          else if (answered && j === v) c += " wrong";
+          return `<button class="${c}" data-k="${k}" data-j="${j}" ${answered ? "disabled" : ""}>${L[j]}) ${fmt(o)}</button>`;
+        }).join("") + `</div>` +
+        (answered ? `<p class="fb"><b>${v === it.a ? "درست ✓" : "درست جواب: " + L[it.a]}</b> · ${fmt(it.fb)}</p>` : "") + `</div>`;
+    } else {
+      const shown = (st[i]["show" + k]);
+      const priv = it.t === "private";
+      h += `<div class="q${priv ? " private" : ""}"><p class="t"><span class="n">${n}</span>${fmt(it.q)}</p>` +
+        (it.h ? `<p class="hint">${fmt(it.h)}</p>` : "") +
+        `<textarea data-k="${k}" aria-label="جواب">${esc(v || "")}</textarea>` +
+        (priv ? "" : (shown ? `<p class="fb"><b>نمونہ جواب:</b> ${fmt(it.fb)}</p>` : `<button class="btn" data-show="${k}">نمونہ جواب دیکھیے</button>`)) + `</div>`;
+    }
+  });
+  const s = stats(i);
+  h += `<section class="band score" id="sc"><span class="big">${s.right}/${s.mcq}</span><span>کثیر الانتخابی سوالوں میں درست جوابات<br><span class="done">مکمل: ${s.answered} از ${s.total}</span></span></section>
+  <div class="band" id="subbox"><p style="margin:0">سب سوال حل ہو جائیں تو جوابات جمع کرائیے۔ یہ سیدھے تربیت کار کے پاس پہنچ جائیں گے۔ «اپنا جائزہ» والے جواب جمع نہیں ہوں گے۔</p>
+  <button class="btn fill" id="send">جوابات جمع کرائیں</button> <button class="btn" id="cp">جوابات کاپی کریں</button>
+  <p class="done" id="msg" role="status">${st["sent" + i] ? "یہ نشست ایک بار جمع ہو چکی ہے۔ دوبارہ جمع کرانے سے نیا جواب الگ درج ہوگا۔" : ""}</p></div>`;
+  document.getElementById("main").innerHTML = h;
+  tabs(i);
+}
+function message(i) {
+  const f = FORMS[i], s = stats(i);
+  let m = `*${f.title}*\nنام: ${st.name || "—"}\nکثیر الانتخابی: ${s.right}/${s.mcq}\n`;
+  let n = 0;
+  f.items.forEach((it, k) => {
+    if (it.t === "h") return; n++;
+    if (it.t === "para") m += `\n${n}۔ ${it.q}\n${((st[i] || {})[k] || "—").trim()}\n`;
+  });
+  return m;
+}
+async function send(i) {
+  const msg = document.getElementById("msg");
+  const f = FORMS[i], sub = SUBMIT[i], a = st[i] || {};
+  const missing = [];
+  if (!(st.name || "").trim()) missing.push("نام");
+  let n = 0;
+  f.items.forEach((it, k) => {
+    if (it.t === "h") return; n++;
+    if (it.t === "mcq" && a[k] === undefined) missing.push("سوال " + n);
+    if (it.t === "para" && !(a[k] || "").trim()) missing.push("سوال " + n);
+  });
+  if (missing.length) { msg.textContent = "ابھی یہ باقی ہیں: " + missing.join("، "); return; }
+  const body = new URLSearchParams();
+  body.append("entry." + sub.e[0], st.name.trim());
+  body.append("entry." + sub.e[1], (st.phone || "").trim());
+  let j = 2;
+  f.items.forEach((it, k) => {
+    if (it.t === "mcq") body.append("entry." + sub.e[j++], it.o[a[k]]);
+    else if (it.t === "para") body.append("entry." + sub.e[j++], a[k].trim());
+  });
+  const b = document.getElementById("send"); b.disabled = true; msg.textContent = "بھیجا جا رہا ہے…";
+  try {
+    await fetch("https://docs.google.com/forms/d/e/" + sub.id + "/formResponse", { method: "POST", mode: "no-cors", body });
+    st["sent" + i] = 1; save();
+    msg.textContent = "جزاکم اللہ خیرا۔ آپ کے جوابات جمع ہو گئے۔";
+    tabs(i);
+  } catch (e) {
+    msg.textContent = "انٹرنیٹ کا مسئلہ ہے؛ تھوڑی دیر بعد دوبارہ کوشش کیجیے۔";
+  }
+  b.disabled = false;
+}
+let cur = 0;
+function route() {
+  const m = /^#s([1-5])$/.exec(location.hash);
+  cur = m ? +m[1] - 1 : 0;
+  render(cur); window.scrollTo(0, 0);
+}
+document.getElementById("main").addEventListener("click", e => {
+  const b = e.target.closest(".opt");
+  if (b) { st[cur][b.dataset.k] = +b.dataset.j; save(); const y = window.scrollY; render(cur); window.scrollTo(0, y); return; }
+  const sh = e.target.closest("[data-show]");
+  if (sh) { st[cur]["show" + sh.dataset.show] = 1; save(); const y = window.scrollY; render(cur); window.scrollTo(0, y); return; }
+  if (e.target.id === "send") { send(cur); return; }
+  if (e.target.id === "cp") {
+    navigator.clipboard.writeText(message(cur)).then(() => { document.getElementById("msg").textContent = "کاپی ہو گیا"; }, () => { document.getElementById("msg").textContent = "کاپی نہیں ہو سکا"; });
+  }
+});
+document.getElementById("main").addEventListener("input", e => {
+  if (e.target.tagName === "TEXTAREA") { st[cur][e.target.dataset.k] = e.target.value; save(); }
+});
+window.addEventListener("hashchange", route);
+route();
+}
+</script>
+</body></html>
